@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-
+import {Component, inject} from '@angular/core';
+import {ThemeService} from './shared/theme/theme.service';
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'calc-matui';
+  theme = inject(ThemeService);
+  constructor() {
+    console.log(document.body.className);
+  }
+
+  test(){
+    this.theme.toggleTheme();
+  }
 }

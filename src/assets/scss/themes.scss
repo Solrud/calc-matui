@@ -1,0 +1,46 @@
+// Светлая тема
+$light-primary-color: #698ce5;
+$light-secondary-color: #96b1e2;
+$light-third-color: #91e0a8;
+
+
+$light-theme: (
+  primary: $light-primary-color,
+  secondary: $light-secondary-color,
+  third: $light-third-color
+);
+
+// Темная тема
+$dark-primary-color: #cd4b4b;
+$dark-secondary-color: #6483bd;
+$dark-third-color: #38c261;
+
+$dark-theme: (
+  primary: $dark-primary-color,
+  secondary: $dark-secondary-color,
+  third: $dark-third-color
+);
+
+// миксин для применения темы
+@mixin theme($theme) {
+  $primary-color: map-get($theme, primary);
+  $secondary-color: map-get($theme, secondary);
+  $third-color: map-get($theme, third);
+
+  .primary-bg{
+    background-color: $primary-color !important;
+  }
+  .secondary-bg{
+    background-color: $secondary-color !important;
+  }
+  .third-bg{
+    background-color: $third-color !important;
+  }
+}
+
+.light-theme{
+  @include theme($light-theme);
+}
+.dark-theme{
+  @include theme($dark-theme);
+}
