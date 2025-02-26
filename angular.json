@@ -32,6 +32,11 @@
                 "input": "public"
               }
             ],
+            "stylePreprocessorOptions": {
+              "sass": {
+                "silenceDeprecations": ["color-functions", "global-builtin", "import", "mixed-decls"]
+              }
+            },
             "styles": [
               "@angular/material/prebuilt-themes/rose-red.css",
               "src/styles.scss"
