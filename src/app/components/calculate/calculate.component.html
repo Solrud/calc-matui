@@ -1,0 +1,88 @@
+<div class="d-flex gap-4 pt-4">
+  <div class="col-my ps-2">
+    <div class="w-100">
+      <label for="id">Выбор расчёта удаления дисбаланса</label>
+      <div class="input-group">
+        <select class="form-select"
+                id="id">
+          @for (removeFrom of removalImbalanceFromList; track $index){
+            <option value="{{removeFrom}}">{{removeFrom}}</option>
+          }
+        </select>
+        <button class="btn btn-light border">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+  <div class="col-my pe-2">
+    <div class="w-100">
+      <label for="id">Выбор материала обработки</label>
+      <div class="input-group">
+        <select class="form-select"
+                id="id">
+          @for (material of materialProcessingList; track $index){
+            <option value="{{material}}">{{material}}</option>
+          }
+        </select>
+        <button class="btn btn-light border">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="d-flex gap-4 pt-4">
+  <div class="col-my ps-2">
+    <div class="w-100">
+      <label for="id">Ширина обработки (h)</label>
+      <div class="input-group">
+        <input class="form-control"
+               id="id"
+               type="text">
+        <button class="btn btn-light border">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-my pe-2">
+    <div class="w-100">
+      <label for="id">Глубина врезания (c)</label>
+      <div class="input-group">
+        <input class="form-control"
+               id="id"
+               type="text">
+        <button class="btn btn-light border">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="d-flex gap-4 pt-4">
+  <div class="col-my ps-2">
+    <div class="w-100">
+      <label for="id">Удаляемая масса (m)</label>
+      <div class="input-group">
+        <input class="form-control"
+               id="id"
+               type="text">
+        <button class="btn btn-light border">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-my ps-2">
+    <div class="d-flex align-items-end">
+      <button class="btn btn-success primary-bg">
+        <i class="bi bi-calculator-fill"></i> Произвести расчет
+      </button>
+    </div>
+  </div>
+</div>
+
+<div></div>
