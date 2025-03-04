@@ -10,7 +10,7 @@ export class RemovingImbalanceFromService {
   private readonly removingImbalanceFrom$
     = new BehaviorSubject<RemovingImbalanceFromDTO[] | null>(null);
 
-  constructor(private readonly apiRemovingImbalanceFromService: APIRemovingImbalanceFromService<RemovingImbalanceFromDTO>)
+  constructor(private readonly apiRemovingImbalanceFromService: APIRemovingImbalanceFromService)
   { }
 
   get removingImbalanceFromList$(): Observable<RemovingImbalanceFromDTO[] | null>{

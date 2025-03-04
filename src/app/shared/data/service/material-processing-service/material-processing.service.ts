@@ -10,7 +10,7 @@ export class MaterialProcessingService {
   private readonly materialProcessing$ = new BehaviorSubject<MaterialProcessingDTO[] | null>(null);
 
   constructor(
-    private readonly apiMaterialProcessingService: APIMaterialProcessingService<MaterialProcessingDTO>)
+    private readonly apiMaterialProcessingService: APIMaterialProcessingService)
   { }
 
   get materialProcessingList$(): Observable<MaterialProcessingDTO[] | null>{
