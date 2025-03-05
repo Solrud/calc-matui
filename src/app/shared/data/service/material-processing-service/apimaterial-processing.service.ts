@@ -18,7 +18,7 @@ export class APIMaterialProcessingService extends ABase implements ISearch<Mater
     // return this.http
     //   .get<D[]>(this.url + '/get');
 
-    return of([new MaterialProcessingDTO(0, 'Титан', 0.0045),
-      new MaterialProcessingDTO(1, 'Сталь', 0.0082)]);
+    return of([new MaterialProcessingDTO(0, 'Титан (плотность (ρ) = 0,0045 г/мм3)', 0.0045),
+      new MaterialProcessingDTO(1, 'Сталь (плотность (ρ) = 0,0082 г/мм3)', 0.0082)]);
   }
 }

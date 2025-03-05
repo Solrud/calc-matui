@@ -11,7 +11,6 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class APICalcService extends ABase{
-  private http = inject(HttpClient);
 
   constructor(@Inject(DATA_FOR_CALC_TOKEN) url: InjectionToken<string>) {
     super(url);
@@ -26,7 +25,7 @@ export class APICalcService extends ABase{
     const c = data.depthIncision;
     const p = data.materialProcessing.hardness;
     const arcLength = new ArcLengthLDTO();
-    arcLength.L = m / p * h * c;
+    arcLength.L = m / (p * h * c);
 
     return of(arcLength);
   }
@@ -40,12 +39,11 @@ export class APICalcService extends ABase{
     const c = data.depthIncision;
     const p = data.materialProcessing.hardness;
     const R = 12.6;
-    const pi = 3.14;
 
     const a = 2 * Math.acos(((R - c) / R));
-    const S = (1/2) * Math.pow(R, 2) * ((pi * a / 180) - Math.sin(a))
+    const S = (1/2) * Math.pow(R, 2) * (a - Math.sin(a));
     const m1 = S * h * p;
-    const N = m/m1;
+    const N = Math.round(m/m1);
 
     const protrusionCount = new ProtrusionCountNDTO();
     protrusionCount.N = N;

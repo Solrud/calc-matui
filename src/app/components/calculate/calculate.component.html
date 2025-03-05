@@ -1,87 +1,149 @@
-<div class="d-flex gap-4 pt-4">
-  <div class="col-my ps-2">
-    <div class="w-100">
-      <label for="id">Выбор расчёта удаления дисбаланса</label>
-      <div class="input-group">
-        <select class="form-select"
-                id="id">
-          @for (removeFrom of removalImbalanceFromList; track $index){
-            <option value="{{removeFrom}}">{{removeFrom}}</option>
+<form [formGroup]="fgCalc" class="w-100 h-100">
+  <div class="d-flex gap-4 pt-4">
+    <div class="col-my ps-2">
+      <div class="w-100">
+        <label for="removingImbalanceFrom">Выбор расчёта удаления дисбаланса</label>
+        <div class="input-group">
+          <select class="form-select"
+                  id="removingImbalanceFrom"
+                  formControlName="removingImbalanceFrom"
+                  required="{{fcFieldIsRequired('removingImbalanceFrom')}}"
+          >
+            @for (removeFrom of removingImbalanceFromList$ | async; track removeFrom.id){
+              <option value="{{removeFrom.id}}">{{removeFrom.name}}</option>
+            }
+          </select>
+          <button class="btn btn-light border"
+                  (click)="fgCalc.get('removingImbalanceFrom').setValue(null)"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-my pe-2">
+      <div class="w-100">
+          <label for="materialProcessing">
+            @if(selectedRemovingImbalanceFrom){
+              Выбор материала обработки
+            } @else {
+              <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
+            }
+          </label>
+        <div class="input-group">
+          <select class="form-select"
+                  id="materialProcessing"
+                  formControlName="materialProcessing"
+                  required="{{fcFieldIsRequired('materialProcessing')}}"
+          >
+            @for (material of materialProcessingList$ | async; track material.id){
+              <option value="{{material.id}}">{{material.name}}</option>
+            }
+          </select>
+          <button class="btn btn-light border"
+                  [disabled]="!selectedRemovingImbalanceFrom"
+                  (click)="fgCalc.get('materialProcessing').setValue(null)"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex gap-4 pt-4">
+    <div class="col-my ps-2">
+      <div class="w-100">
+        <label for="widthProcessing">
+          @if(selectedRemovingImbalanceFrom){
+            Ширина обработки (h) мм
+          } @else {
+            <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
+          }</label>
+        <div class="input-group">
+          <input class="form-control"
+                 id="widthProcessing"
+                 type="number"
+                 formControlName="widthProcessing"
+                 required="{{fcFieldIsRequired('widthProcessing')}}"
+          >
+          <button class="btn btn-light border"
+                  [disabled]="!selectedRemovingImbalanceFrom"
+                  (click)="fgCalc.get('widthProcessing').setValue('')"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-my pe-2">
+      <div class="w-100">
+        <label for="depthIncision">
+          @if(selectedRemovingImbalanceFrom){
+            Глубина врезания (c) мм
           }
-        </select>
-        <button class="btn btn-light border">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-my pe-2">
-    <div class="w-100">
-      <label for="id">Выбор материала обработки</label>
-      <div class="input-group">
-        <select class="form-select"
-                id="id">
-          @for (material of materialProcessingList; track $index){
-            <option value="{{material}}">{{material}}</option>
+          @else {
+            <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
           }
-        </select>
-        <button class="btn btn-light border">
-          <i class="bi bi-x-lg"></i>
-        </button>
+        </label>
+        <div class="input-group">
+          <input class="form-control"
+                 id="depthIncision"
+                 type="number"
+                 formControlName="depthIncision"
+                 required="{{fcFieldIsRequired('depthIncision')}}"
+          >
+          <button class="btn btn-light border"
+                  [disabled]="!selectedRemovingImbalanceFrom"
+                  (click)="fgCalc.get('depthIncision').setValue('')"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div class="d-flex gap-4 pt-4">
-  <div class="col-my ps-2">
-    <div class="w-100">
-      <label for="id">Ширина обработки (h)</label>
-      <div class="input-group">
-        <input class="form-control"
-               id="id"
-               type="text">
-        <button class="btn btn-light border">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="col-my pe-2">
-    <div class="w-100">
-      <label for="id">Глубина врезания (c)</label>
-      <div class="input-group">
-        <input class="form-control"
-               id="id"
-               type="text">
-        <button class="btn btn-light border">
-          <i class="bi bi-x-lg"></i>
-        </button>
-      </div>
-    </div>
-  </div>
 
-</div>
-<div class="d-flex gap-4 pt-4">
-  <div class="col-my ps-2">
-    <div class="w-100">
-      <label for="id">Удаляемая масса (m)</label>
-      <div class="input-group">
-        <input class="form-control"
-               id="id"
-               type="text">
-        <button class="btn btn-light border">
-          <i class="bi bi-x-lg"></i>
+  </div>
+  <div class="d-flex gap-4 pt-4">
+    <div class="col-my ps-2">
+      <div class="w-100">
+        <label for="massRemovable">
+          @if(selectedRemovingImbalanceFrom){
+            Удаляемая масса (m) грамм
+          } @else {
+            <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
+          }
+        </label>
+        <div class="input-group">
+          <input class="form-control"
+                 id="massRemovable"
+                 type="number"
+                 formControlName="massRemovable"
+                 required="{{fcFieldIsRequired('massRemovable')}}"
+          >
+          <button class="btn btn-light border"
+                  [disabled]="!selectedRemovingImbalanceFrom"
+                  (click)="fgCalc.get('massRemovable').setValue('')"
+          >
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-my ps-2">
+      <div class="d-flex align-items-end">
+        <button class="btn btn-success primary-bg"
+                [disabled]="fgCalc.invalid"
+                (click)="onClickCalc()"
+        >
+          <i class="bi bi-calculator-fill"></i> Произвести расчет
         </button>
       </div>
     </div>
   </div>
-  <div class="col-my ps-2">
-    <div class="d-flex align-items-end">
-      <button class="btn btn-success primary-bg">
-        <i class="bi bi-calculator-fill"></i> Произвести расчет
-      </button>
-    </div>
-  </div>
-</div>
+</form>
 
-<div></div>
+<span class="fs-3">{{calcResult}}</span>
+
+<ng-template #selectRemovingFrom>
+  <span class="text-black-50">**Сначала выберите метод обработки**</span>
+</ng-template>
