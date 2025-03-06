@@ -1,6 +1,6 @@
-import {ABaseDTO} from '../abase-dto';
+import {AProcessingDTO} from '../aprocessing-dto';
 
-export class MaterialProcessingDTO extends ABaseDTO{
+export class MaterialProcessingDTO extends AProcessingDTO{
   hardness: number;
 
   constructor(id: number, name: string, hardness: number) {

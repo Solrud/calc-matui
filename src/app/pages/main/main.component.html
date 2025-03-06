@@ -1,4 +1,23 @@
-<section class="main-container border border-black border-opacity-25 d-flex flex-column">
+<section class="main-container d-flex flex-column">
   <app-calculate></app-calculate>
-
+  @if(resultCalc){
+    <div class="mt-5 d-flex justify-content-between">
+      <div class="col-4"></div>
+      <div class="col-4 text-center">
+        <span class="fs-4 primary-color">Результат:
+          <span class="fw-bold">
+            {{resultCalc?.result}} {{resultCalc?.unitMeasurement}}
+          </span>
+        </span>
+      </div>
+      <div class="col-4 text-center">
+        <button class="btn btn-success me-5"
+                [disabled]="true"
+        >
+          <i class="bi bi-download"></i>
+          Экспорт в Excel файл</button>
+      </div>
+    </div>
+  }
+  <app-table-result class="mt-5"></app-table-result>
 </section>

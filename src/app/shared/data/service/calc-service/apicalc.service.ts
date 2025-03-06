@@ -10,44 +10,53 @@ import {HttpClient} from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class APICalcService extends ABase{
+export class APICalcService extends ABase {
 
   constructor(@Inject(DATA_FOR_CALC_TOKEN) url: InjectionToken<string>) {
     super(url);
   }
 
-  calcArcLength$(data: DataForCalcDTO): Observable<ArcLengthLDTO>{
-    // return this.http
-    //   .post<ArcLengthLDTO>(this.url + '/arc-length' + '/calc', data);
+  calc$(data: DataForCalcDTO): Observable<ProtrusionCountNDTO | ArcLengthLDTO> {
 
-    const m = data.massRemovable;
-    const h = data.widthProcessing;
-    const c = data.depthIncision;
-    const p = data.materialProcessing.hardness;
-    const arcLength = new ArcLengthLDTO();
-    arcLength.L = m / (p * h * c);
+    if (data.removingImbalanceFrom.name == 'С балансировочного бурта') {
+      // return this.http
+      //   .post<ArcLengthLDTO>(this.url + '/arc-length' + '/calc', data);
 
-    return of(arcLength);
-  }
+      const m = data.massRemovable;
+      const h = data.widthProcessing;
+      const c = data.depthIncision;
+      const p = data.materialProcessing.hardness;
+      const arcLength = new ArcLengthLDTO();
+      const l = m / (p * h * c);
+      arcLength.result = Number(l.toFixed(1));
+      arcLength.unitMeasurement = 'мм';
+      arcLength.nameMethod = 'длины дуги (L)'
 
-  calcProtrusionCount$(data: DataForCalcDTO): Observable<ProtrusionCountNDTO>{
-    // return this.http
-    //   .post<ProtrusionCountNDTO>(this.url + '/protrusion-count' + '/calc', data);
+      return of(arcLength);
+    }
+    if (data.removingImbalanceFrom.name == 'С выступов диска') {
+      // return this.http
+      //   .post<ProtrusionCountNDTO>(this.url + '/protrusion-count' + '/calc', data);
 
-    const m = data.massRemovable;
-    const h = data.widthProcessing;
-    const c = data.depthIncision;
-    const p = data.materialProcessing.hardness;
-    const R = 12.6;
+      const m = data.massRemovable;
+      const h = data.widthProcessing;
+      const c = data.depthIncision;
+      const p = data.materialProcessing.hardness;
+      const R = 12.6;
 
-    const a = 2 * Math.acos(((R - c) / R));
-    const S = (1/2) * Math.pow(R, 2) * (a - Math.sin(a));
-    const m1 = S * h * p;
-    const N = Math.round(m/m1);
+      const a = 2 * Math.acos(((R - c) / R));
+      const S = (1 / 2) * Math.pow(R, 2) * (a - Math.sin(a));
+      const m1 = S * h * p;
+      const N = Math.round(m / m1);
 
-    const protrusionCount = new ProtrusionCountNDTO();
-    protrusionCount.N = N;
+      const protrusionCount = new ProtrusionCountNDTO();
+      protrusionCount.result = N;
+      protrusionCount.unitMeasurement = null;
+      protrusionCount.nameMethod = 'количество выступов (N)'
 
-    return of(protrusionCount);
+      return of(protrusionCount);
+    }
+
+    return of(null);
   }
 }

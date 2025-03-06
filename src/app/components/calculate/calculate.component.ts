@@ -11,7 +11,7 @@ import {RemovingImbalanceFromDTO} from '../../shared/data/model/dto/impl/removin
 import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto';
 import {MaterialProcessingDTO} from '../../shared/data/model/dto/impl/material-processing-dto';
 import {CalcService} from '../../shared/data/service/calc-service/calc.service';
-import {map} from 'rxjs';
+import {EventSignalService} from '../../shared/event/event-signal.service';
 
 @Component({
   selector: 'app-calculate',
@@ -31,6 +31,7 @@ export class CalculateComponent implements OnInit{
   readonly materialProcessingList$ = this.materialProcessingService.materialProcessingList$;
 
   calcService = inject(CalcService);
+  eventSignalService = inject(EventSignalService);
 
   fgCalc: FormGroup;
   selectedRemovingImbalanceFrom: RemovingImbalanceFromDTO;
@@ -41,20 +42,16 @@ export class CalculateComponent implements OnInit{
 
   ngOnInit() {
     this._loadData();
-    this.initDialogDefault();
     this.initFgCalc();
 
     this._subscribeFcRemovingImbalanceFrom();
     this._subscribeFcMaterialProcessing();
+    this._subscribeValidFgCalc();
   }
 
   _loadData(){
     this.removingImbalanceService.loadRemovingImbalanceFrom();
     this.materialProcessingService.loadMaterialsProcessing();
-  }
-
-  initDialogDefault(){
-
   }
 
   getCorrectValueFromField(field: string): string | null{
@@ -66,14 +63,23 @@ export class CalculateComponent implements OnInit{
       removingImbalanceFrom: new FormControl(
         {value: this.getCorrectValueFromField('removingImbalanceFrom'), disabled: false}, Validators.required), // выбор удаления дисбаланса откуда
       materialProcessing: new FormControl(
-        {value: this.getCorrectValueFromField('materialProcessing'), disabled: true}, Validators.required),     // Выбор материала обработки
+        {value: null, disabled: true}, Validators.required),                                                    // Выбор материала обработки
       widthProcessing: new FormControl(
-        {value: null, disabled: true}, Validators.required),        // ширина обработки h
+        {value: null, disabled: true}, Validators.required),                                                    // ширина обработки h
       depthIncision: new FormControl(
-        {value: null, disabled: true}, Validators.required),          // глубина врезания c
+        {value: null, disabled: true}, Validators.required),                                                    // глубина врезания c
       massRemovable: new FormControl(
-        {value: null, disabled: true}, Validators.required),          // удаляемая масса m
+        {value: null, disabled: true}, Validators.required),                                                    // удаляемая масса m
     });
+  }
+
+  _subscribeValidFgCalc(): void{
+    this.fgCalc.statusChanges.subscribe((status) => {
+      if (status === 'INVALID'){
+        this.eventSignalService.updateResultCalcInTable(null);
+        this.eventSignalService.updateDataForCalcInTable(null);
+      }
+    })
   }
 
   _subscribeFcRemovingImbalanceFrom(): void{
@@ -93,6 +99,7 @@ export class CalculateComponent implements OnInit{
         this.fgCalc.get('massRemovable').enable();
       }
       if (!result){
+        this.calcResult = null;
         this.fgCalc.get('materialProcessing').disable();
         this.fgCalc.get('widthProcessing').disable();
         this.fgCalc.get('depthIncision').disable();
@@ -113,25 +120,6 @@ export class CalculateComponent implements OnInit{
     return returnBoolean ? fcRequired : (fcRequired ? ' *' : '');
   }
 
-  // setLabelForInput(label: LabelCalcInputEnum){
-  //   if (!this.selectedRemovingImbalanceFrom)
-  //     return '**Сначала выберите метод обработки**';
-  //
-  //   if (label === LabelCalcInputEnum.CHOOSE_MAT_PROCESSING){
-  //     return 'Выбор материала обработки';
-  //   }
-  //   if (label === LabelCalcInputEnum.H){
-  //     return 'Ширина обработки (h) мм';
-  //   }
-  //   if (label === LabelCalcInputEnum.C){
-  //     return 'Глубина врезания (c) мм';
-  //   }
-  //   if (label === LabelCalcInputEnum.M){
-  //     return 'Удаляемая масса (m) грамм';
-  //   }
-  //   return '';
-  // }
-
   createNewDataForCalc(){
     this.newDataForCalc = new DataForCalcDTO();
     this.newDataForCalc.removingImbalanceFrom = this.selectedRemovingImbalanceFrom;
@@ -144,24 +132,12 @@ export class CalculateComponent implements OnInit{
   onClickCalc(){
     this.createNewDataForCalc();
 
-    if (this.selectedRemovingImbalanceFrom.name == 'С балансировочного бурта'){
-      this.calcService.calcArcLength(this.newDataForCalc)
-        .pipe(
-          map(result => result.L)
-        )
-        .subscribe( result => {
-          this.calcResult = result;
-      })
-    }
+    this.calcService.calc(this.newDataForCalc)
+      .subscribe( result => {
+        this.calcResult = result.result;
 
-    if (this.selectedRemovingImbalanceFrom.name == 'С выступов диска'){
-      this.calcService.calcProtrusionCount(this.newDataForCalc)
-        .pipe(
-          map(result => result.N)
-        )
-        .subscribe( result => {
-          this.calcResult = result;
-      })
-    }
+        this.eventSignalService.updateDataForCalcInTable(this.newDataForCalc);
+        this.eventSignalService.updateResultCalcInTable(result)
+    })
   }
 }

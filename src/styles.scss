@@ -23,7 +23,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ng-invalid[required], .ng-invalid.required {
   border-left: 4px solid #c9503e !important;
 }
-.ng-valid[required], .ng-valid.required, select.required:disabled, select[required]:disabled {
+.ng-valid[required], .ng-valid.required {
   border-left: 4px solid #3061cb !important;
 }
 

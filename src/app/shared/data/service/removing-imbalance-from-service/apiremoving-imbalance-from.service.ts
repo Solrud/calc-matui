@@ -18,7 +18,7 @@ export class APIRemovingImbalanceFromService extends ABase implements ISearch<Re
     // return this.http
     //   .get<D[]>(this.url + '/get');
 
-    return of([new RemovingImbalanceFromDTO(0, 'С выступов диска'),
+    return of([new RemovingImbalanceFromDTO(0, 'С выступов диска', ),
       new RemovingImbalanceFromDTO(1, 'С балансировочного бурта')])
   }
 }

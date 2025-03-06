@@ -1,6 +1,6 @@
-import {ABaseDTO} from '../abase-dto';
+import {AProcessingDTO} from '../aprocessing-dto';
 
-export class RemovingImbalanceFromDTO extends ABaseDTO{
+export class RemovingImbalanceFromDTO extends AProcessingDTO{
   constructor(id: number, name: string) {
     super(id, name);
   }

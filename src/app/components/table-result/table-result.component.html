@@ -1,0 +1,54 @@
+@if(resultCalc && dataForCalc){
+  <table class="table ">
+    <thead class="thead-table">
+    <tr>
+      <th colspan="2">
+        Параметры указанные пользователем:
+      </th>
+      <th scope="col"></th>
+    </tr>
+    <tr>
+      <th scope="col">Параметр</th>
+      <th scope="col">Значение</th>
+      <th scope="col">Единица измерения</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td scope="row">ширина обработки (h) =</td>
+      <td>{{dataForCalc?.widthProcessing}}</td>
+      <td>мм</td>
+    </tr>
+    <tr>
+      <td scope="row">глубина врезания (с) =</td>
+      <td>{{dataForCalc?.depthIncision}}</td>
+      <td>мм</td>
+    </tr>
+    <tr>
+      <td scope="row">удаляемая масса (m) =</td>
+      <td>{{dataForCalc?.massRemovable}}</td>
+      <td>грамм</td>
+    </tr>
+    <tr>
+      <td scope="row"></td>
+      <td>	&nbsp;</td>
+      <td>	&nbsp;</td>
+    </tr>
+    <tr>
+      <td scope="row">Результаты расчетов</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td scope="row">{{resultCalc?.nameMethod}} =</td>
+      <th class="fs-5">{{resultCalc?.result}}</th>
+      <th>{{resultCalc?.unitMeasurement}}</th>
+    </tr>
+    </tbody>
+  </table>
+} @else {
+  <div class="d-flex justify-content-center mt-5 pt-5">
+    <span class="primary-color">Здесь будет отображаться результат обработки</span>
+  </div>
+}
+
