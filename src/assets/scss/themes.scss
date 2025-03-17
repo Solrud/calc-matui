@@ -1,27 +1,39 @@
-// Светлая тема
+// ? Светлая тема
 $light-primary-color: #244cb6;
-$light-secondary-color: #96b1e2;
-$light-third-color: #91e0a8;
+$light-secondary-color: #4c6fcc;
+$light-third-color: #145a70;
 $light-main-bg-color: #ececec;
+$light-font-black-color: #0c0c0c;
+$light-grey-color: #737373;
+$light-table-bg-color: #ff9494;
 
 $light-theme: (
   primary: $light-primary-color,
   secondary: $light-secondary-color,
   third: $light-third-color,
   main-bg-color: $light-main-bg-color,
+  font-color: $light-font-black-color,
+  grey-color: $light-grey-color,
+  table-color: $light-table-bg-color,
 );
 
-// Темная тема
-$dark-primary-color: #cd4b4b;
-$dark-secondary-color: #6483bd;
-$dark-third-color: #38c261;
-$dark-main-bg-color: #ececec;
+// ! Темная тема
+$dark-primary-color: #14317e;
+$dark-secondary-color: #3058c2;
+$dark-third-color: #41e0d6;
+$dark-main-bg-color: #2f2f2f;
+$dark-font-white-color: #f6f6f6;
+$dark-grey-color: #b6b6b6;
+$dark-table-bg-color: #34bdb8;
 
 $dark-theme: (
   primary: $dark-primary-color,
   secondary: $dark-secondary-color,
   third: $dark-third-color,
   main-bg-color: $dark-main-bg-color,
+  font-color: $dark-font-white-color,
+  grey-color: $dark-grey-color,
+  table-color: $dark-table-bg-color,
 );
 
 // миксин для применения темы
@@ -30,7 +42,14 @@ $dark-theme: (
   $secondary-color: map-get($theme, secondary);
   $third-color: map-get($theme, third);
   $main-bg-color: map-get($theme, main-bg-color);
+  $font-color: map-get($theme, font-color);
+  $grey-color: map-get($theme, grey-color);
+  $table-bg-color: map-get($theme, table-color);
 
+  $white-permanent-color: #f8f8f8;
+  $black-permanent-color: #090909;
+
+  // * Background
   .primary-bg{
     background-color: $primary-color !important;
   }
@@ -40,6 +59,21 @@ $dark-theme: (
   .third-bg{
     background-color: $third-color !important;
   }
+  .soft-white-gray-bg{
+    background-color: $main-bg-color !important;
+  }
+  .white-permanent-bg{
+    background-color: $white-permanent-color !important;
+  }
+  .black-permanent-bg{
+    background-color: $black-permanent-color !important;
+  }
+  .table-bg{
+    --bs-table-bg: $table-bg-color !important;
+  }
+
+
+  // * Color
   .primary-color{
     color: $primary-color !important;
   }
@@ -49,9 +83,28 @@ $dark-theme: (
   .third-color{
     color: $third-color !important;
   }
-  .soft-white-gray-bg{
-    background-color: $main-bg-color !important;
+  .white-permanent-color{
+    color: $white-permanent-color !important;
   }
+  .black-permanent-color{
+    color: $black-permanent-color !important;
+  }
+  .font-color{
+    color: $font-color !important;
+  }
+  .grey-color{
+    color: $grey-color !important;
+  }
+
+
+  // * Теги
+  label{
+    color: $font-color !important;
+  }
+
+
+
+
 }
 
 .light-theme{

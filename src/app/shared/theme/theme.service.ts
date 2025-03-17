@@ -5,7 +5,7 @@ import {Theme} from './theme.enum';
   providedIn: 'root'
 })
 export class ThemeService{
-  currentTheme: Theme | null = null;
+  private currentTheme: Theme | null = null;
 
   constructor() {
     if (!this.currentTheme) {
@@ -14,7 +14,11 @@ export class ThemeService{
     }
   }
 
-  toggleTheme(){
+  get getTheme(): Theme{
+    return this.currentTheme;
+  }
+
+  toggleTheme(): void{
     if (this.currentTheme){
       document.body.classList.remove(this.currentTheme + '-theme');
     }

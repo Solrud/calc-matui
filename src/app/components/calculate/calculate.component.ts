@@ -54,22 +54,22 @@ export class CalculateComponent implements OnInit{
     this.materialProcessingService.loadMaterialsProcessing();
   }
 
-  getCorrectValueFromField(field: string): string | null{
+  getCorrectValueFromField(_field: string): string | null{
     return '';
   }
 
   initFgCalc(){
     this.fgCalc = new FormGroup({
       removingImbalanceFrom: new FormControl(
-        {value: this.getCorrectValueFromField('removingImbalanceFrom'), disabled: false}, Validators.required), // выбор удаления дисбаланса откуда
+        {value: this.getCorrectValueFromField('removingImbalanceFrom'), disabled: false}, Validators.required), // ! выбор удаления дисбаланса откуда
       materialProcessing: new FormControl(
-        {value: null, disabled: true}, Validators.required),                                                    // Выбор материала обработки
+        {value: null, disabled: true}, Validators.required),                                                    // ! Выбор материала обработки
       widthProcessing: new FormControl(
-        {value: null, disabled: true}, Validators.required),                                                    // ширина обработки h
+        {value: null, disabled: true}, Validators.required),                                                    // ! ширина обработки h
       depthIncision: new FormControl(
-        {value: null, disabled: true}, Validators.required),                                                    // глубина врезания c
+        {value: null, disabled: true}, Validators.required),                                                    // ! глубина врезания c
       massRemovable: new FormControl(
-        {value: null, disabled: true}, Validators.required),                                                    // удаляемая масса m
+        {value: null, disabled: true}, Validators.required),                                                    // ! удаляемая масса m
     });
   }
 

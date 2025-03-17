@@ -2,4 +2,12 @@
 <div class="col-4 text-center">
   <h4 class="mt-2 text-white">Расчёт съема материала с ДСЕ</h4>
 </div>
-<div class="col-4"></div>
+<div class="col-4 d-flex justify-content-end">
+  <div class="me-5 d-flex align-items-center">
+    <i class="fs-4 bi text-white cursor-pointer"
+       [class.bi-brightness-high-fill]="currentTheme == Theme.DARK"
+       [class.bi-moon-fill]="currentTheme == Theme.LIGHT"
+       (click)="onClickToggleTheme()"></i>
+  </div>
+
+</div>

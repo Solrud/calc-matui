@@ -1,25 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
 @use 'bootstrap/scss/bootstrap';
 @use "bootstrap-icons/font/bootstrap-icons";
 @import 'assets/scss/themes';
 @import 'assets/scss/constants';
 
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-/* Importing Bootstrap SCSS file. */
+// ! вроде нужные импорты но пока не использовал, переделать под scss
+// ! @import '~@angular/material/prebuilt-themes/rose-red.css';
+// ! @import "~bootstrap/dist/css/bootstrap.min.css";
 
-//@import '~@angular/material/prebuilt-themes/rose-red.css';
-//@import "~bootstrap/dist/css/bootstrap.min.css";
-
-.main-container{ // главный контейнер посередине страницы
-  margin: 0 auto;
-  width: 100%;
-  max-width: $width-main-container;
+// * Главный контейнер посередине страницы
+.main-container{
+  margin: 0 auto !important;
+  width: 100% !important;
+  max-width: $width-main-container !important;
 }
 
-// подсветка валидации форм
+// * Подсветка валидации форм
 .ng-invalid[required], .ng-invalid.required {
   border-left: 4px solid #c9503e !important;
 }
@@ -27,14 +25,17 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   border-left: 4px solid #3061cb !important;
 }
 
-
-// убирание стрелочек в input type=number
+// * Убирание стрелочек в input type=number
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none; /* Убираем стрелочки в Chrome, Safari, Edge */
   margin: 0; /* Убираем отступы */
-}
-/* Убираем стрелочки в Firefox */
-input[type="number"] {
   -moz-appearance: textfield; /* Убираем стрелочки в Firefox */
 }
+
+// * Курсор руки
+.cursor-pointer{
+  cursor: pointer !important;
+}
+
+
