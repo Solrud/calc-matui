@@ -11,11 +11,14 @@
         </span>
       </div>
       <div class="col-4 text-center">
-        <button class="btn btn-success border-0 me-5"
-                [disabled]="true"
-        >
-          <i class="bi bi-download"></i>
-          Экспорт в Excel файл</button>
+        @if (dataForCalc){
+          <button class="btn btn-success border-0 me-5"
+                  (click)="exportToExcel()"
+          >
+            <i class="bi bi-download"></i>
+            Экспорт в Excel файл
+          </button>
+        }
       </div>
     </div>
   }
