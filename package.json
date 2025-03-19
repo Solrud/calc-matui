@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:testbazis": "ng build --configuration production --base-href=/calcmat/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },

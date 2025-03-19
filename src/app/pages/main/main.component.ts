@@ -53,7 +53,7 @@ export class MainComponent {
 
     // Создание раб книги и добавление листа
     const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Лист результата');
 
     const date = new Date();
     const day = String(date.getDate()).padStart(2, '0');
