@@ -1,0 +1,26 @@
+<div class="modal-header primary-bg d-flex justify-content-center border-0">
+  <h5 class="modal-title text-white" id="modal-basic-title">{{ "DEV-INFO.INFO-ABOUT-PROGRAM" | translate }}</h5>
+</div>
+<div class="modal-body d-flex flex-column soft-white-gray-bg ">
+  <span class="text-center fs-6 fw-bold mb-2 black-to-white-color">{{ "DEV-INFO.BUREAU-DEV-OSP-TPP" | translate }}</span>
+  <span class="employee black-to-white-color"><i class="bi bi-person-fill"></i> <span class="post">
+    {{ "DEV-INFO.HEAD-OF-OSP-TPP-DEPARTMENT" | translate }}:</span> {{ "DEV-INFO.ER" | translate }} <i class="bi bi-envelope-fill"></i>
+    {{ "DEV-INFO.ER-EMAIL" | translate }} <i class="bi bi-telephone-fill"></i> {{ "DEV-INFO.ER-PHONE" | translate }}</span>
+  <span class="employee black-to-white-color"><i class="bi bi-person-fill"></i> <span class="post">
+    {{ "DEV-INFO.HEAD-OF-BUREAU-DEV-PROGRAM" | translate }}:</span> {{ "DEV-INFO.VB" | translate }} <i class="bi bi-envelope-fill"></i>
+    {{ "DEV-INFO.VB-EMAIL" | translate }} <i class="bi bi-telephone-fill"></i> {{ "DEV-INFO.VB-PHONE" | translate }}</span>
+  <span class="employee black-to-white-color"><i class="bi bi-person-fill"></i> <span class="post">
+    {{ "DEV-INFO.BEST-OF-DEVELOPER-PROGRAM" | translate }}:</span> {{ "DEV-INFO.MI" | translate }} <i class="bi bi-envelope-fill"></i>
+    {{ "DEV-INFO.MI-EMAIL" | translate }} <i class="bi bi-telephone-fill"></i> {{ "DEV-INFO.MI-PHONE" | translate }}</span>
+  <span class="employee black-to-white-color"><i class="bi bi-person-fill"></i> <span class="post">
+    {{ "DEV-INFO.ASSISTANT-DEVELOPER" | translate }}:</span> {{ "DEV-INFO.DV" | translate }} <i class="bi bi-envelope-fill"></i>
+    {{ "DEV-INFO.DV-EMAIL" | translate }} <i class="bi bi-telephone-fill"></i> {{ "DEV-INFO.DV-PHONE" | translate }}</span>
+</div>
+<div class="modal-footer d-flex justify-content-between align-items-end primary-bg border-0">
+  <span class="footer-rights-text">{{ "FOOTER.OWNERSHIP" | translate }} {{ date | date: 'yyyy' }}</span>
+  <button type="button"
+          ngbAutofocus
+          class="btn btn-primary bg-white text-black"
+          (click)="onClickCancel()"
+  >{{ "BUTTON.CLOSE" | translate}}</button>
+</div>

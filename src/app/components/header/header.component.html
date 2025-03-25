@@ -1,13 +1,37 @@
 <div class="col-4"></div>
-<div class="col-4 text-center">
-  <h4 class="mt-2 text-white">Расчёт съема материала с ДСЕ</h4>
+<div class="col-4  d-flex  justify-content-center align-items-center">
+  <h4 class="mt-2 white-permanent-color">{{ "TITLE.CALC-MAT" | translate}}</h4>
+  <h4 class="white-permanent-color version ms-2">{{DEFAULT_APP_VERSION}}</h4>
 </div>
 <div class="col-4 d-flex justify-content-end">
+  <div class="me-4 d-flex align-items-center">
+    <i class="fs-4 bi bi-newspaper text-white cursor-pointer"
+       ngbTooltip="{{'HINT.DEV-NEWS'|translate }}"
+       (click)="onClickOpenNewsDialog()">
+      @if(showNewsAttention){
+        <img
+          class="news-attention-config"
+          src="assets/images/attention-fill.gif"
+          height="16" width="16">
+      }
+    </i>
+  </div>
+  <div class="me-4 d-flex align-items-center">
+    <i class="fs-3 bi bi-person-lines-fill text-white cursor-pointer"
+       ngbTooltip="{{'HINT.DEVELOPERS-INFO'|translate }}"
+       (click)="omClickOpenDevelopersInfoDialog()"></i>
+  </div>
+  <div class="me-4 d-flex align-items-center">
+    <i class="fs-4 bi bi-filetype-pdf text-white cursor-pointer"
+       ngbTooltip="{{'HINT.INSTRUCTION'|translate }}"
+       (click)="onClickOpenInstructionInNewTab()"></i>
+  </div>
   <div class="me-5 d-flex align-items-center">
     <i class="fs-4 bi text-white cursor-pointer"
-       [class.bi-brightness-high-fill]="currentTheme == Theme.DARK"
-       [class.bi-moon-fill]="currentTheme == Theme.LIGHT"
+       ngbTooltip="{{'HINT.TOGGLE-THEME'|translate }}"
+       placement="bottom"
+       [class.bi-brightness-high-fill]="currentTheme == Theme.LIGHT"
+       [class.bi-moon-fill]="currentTheme == Theme.DARK"
        (click)="onClickToggleTheme()"></i>
   </div>
-
 </div>

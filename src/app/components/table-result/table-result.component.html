@@ -3,31 +3,31 @@
     <thead class="thead-table">
     <tr>
       <th colspan="2">
-        Параметры указанные пользователем:
+        {{ "TABLE-RESULT.PARAMETERS-FROM-USER" | translate }}:
       </th>
       <th scope="col"></th>
     </tr>
     <tr>
-      <th scope="col">Параметр</th>
-      <th scope="col">Значение</th>
-      <th scope="col">Единица измерения</th>
+      <th scope="col">{{ "TABLE-RESULT.PARAMETER" | translate }}</th>
+      <th scope="col">{{ "TABLE-RESULT.VALUE" | translate }}</th>
+      <th scope="col">{{ "TABLE-RESULT.UNIT-MEASUREMENT" | translate }}</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-      <td scope="row">ширина обработки (h) =</td>
+      <td scope="row">{{ "TABLE-RESULT.WIDTH-PROCESSING-(H)" | translate }} =</td>
       <td>{{dataForCalc?.widthProcessing}}</td>
-      <td>мм</td>
+      <td>{{ "TABLE-RESULT.MM" | translate }}</td>
     </tr>
     <tr>
-      <td scope="row">глубина врезания (с) =</td>
+      <td scope="row">{{ "TABLE-RESULT.DEPTH-INCISION-(C)" | translate }} =</td>
       <td>{{dataForCalc?.depthIncision}}</td>
-      <td>мм</td>
+      <td>{{ "TABLE-RESULT.MM" | translate }}</td>
     </tr>
     <tr>
-      <td scope="row">удаляемая масса (m) =</td>
+      <td scope="row">{{ "TABLE-RESULT.MASS-REMOVABLE-(M)" | translate }} =</td>
       <td>{{dataForCalc?.massRemovable}}</td>
-      <td>грамм</td>
+      <td>{{ "TABLE-RESULT.GRAM" | translate }}</td>
     </tr>
     <tr>
       <td scope="row"></td>
@@ -35,7 +35,7 @@
       <td>	&nbsp;</td>
     </tr>
     <tr>
-      <td scope="row">Результаты расчетов</td>
+      <td scope="row">{{ "TABLE-RESULT.CALC-RESULT" | translate }}</td>
       <td></td>
       <td></td>
     </tr>
@@ -46,9 +46,4 @@
     </tr>
     </tbody>
   </table>
-} @else {
-  <div class="d-flex justify-content-center mt-5 pt-5">
-    <span class="primary-color">Здесь будет отображаться результат обработки</span>
-  </div>
 }
-

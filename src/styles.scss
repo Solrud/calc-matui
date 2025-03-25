@@ -4,10 +4,10 @@
 @import 'assets/scss/constants';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 
 // ! вроде нужные импорты но пока не использовал, переделать под scss
-// ! @import '~@angular/material/prebuilt-themes/rose-red.css';
+@import '@angular/material/prebuilt-themes/rose-red.css';
 // ! @import "~bootstrap/dist/css/bootstrap.min.css";
 
 // * Главный контейнер посередине страницы
@@ -19,10 +19,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // * Подсветка валидации форм
 .ng-invalid[required], .ng-invalid.required {
-  border-left: 4px solid #c9503e !important;
+  border-left: 4px solid $ng-invalid-border-color !important;
 }
 .ng-valid[required], .ng-valid.required {
-  border-left: 4px solid #3061cb !important;
+  border-left: 4px solid $ng-valid-border-color !important;
 }
 
 // * Убирание стрелочек в input type=number

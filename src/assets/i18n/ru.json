@@ -1,0 +1,62 @@
+{
+  "TITLE": {
+    "CALC-MAT": "Расчёт съема материала с ДСЕ"
+  },
+  "BUTTON": {
+    "CALCULATE-RESULT": "Произвести расчет",
+    "CLOSE": "Закрыть"
+  },
+  "CALC": {
+    "SELECT-REMOVING-IMBALANCE_FROM": "Выбор расчёта удаления дисбаланса",
+    "SELECT-MATERIAL-PROCESSING": "Выбор материала обработки",
+    "WIDTH-PROCESSING-(H)-MM": "Ширина обработки (h) мм",
+    "DEPTH-INCISION-(C)-MM": "Глубина врезания (c) мм",
+    "MASS-REMOVABLE-(M)-GRAM": "Удаляемая масса (m) грамм",
+    "FIRST-SELECT-METHOD-PROCESSING": "**Сначала выберите метод обработки**"
+  },
+  "FOOTER": {
+    "OWNERSHIP": "Собственность АО \"ОДК-Авиадвигатель\". Все права защищены.",
+    "DEVELOPED": "Разработчик ОСП ТПП"
+  },
+  "TABLE-RESULT": {
+    "PARAMETERS-FROM-USER": "Параметры указанные пользователем",
+    "PARAMETER": "Параметр",
+    "VALUE": "Значение",
+    "UNIT-MEASUREMENT": "Единица измерения",
+    "WIDTH-PROCESSING-(H)": "Ширина обработки (h)",
+    "DEPTH-INCISION-(C)": "Глубина врезания (c)",
+    "MASS-REMOVABLE-(M)": "Удаляемая масса (m)",
+    "CALC-RESULT": "Результаты расчетов",
+    "MM": "мм",
+    "GRAM": "грамм"
+  },
+  "DEV-INFO": {
+    "INFO-ABOUT-PROGRAM": "Информация о разработчиках ПО \"Расчёт съема материала с ДСЕ\"",
+    "BUREAU-DEV-OSP-TPP": "Бюро разработки ОСП ТПП",
+    "HEAD-OF-OSP-TPP-DEPARTMENT": "Начальник отдела ОСП ТПП",
+    "ER": "Эдуард Раисович",
+    "ER-EMAIL": "aritkulov@avid.ru",
+    "ER-PHONE": "31926",
+    "HEAD-OF-BUREAU-DEV-PROGRAM": "Начальник бюро спец. ПО",
+    "VB": "Бочкарев Виталий",
+    "VB-EMAIL": "bochkarev@avid.ru",
+    "VB-PHONE": "31948",
+    "BEST-OF-DEVELOPER-PROGRAM": "Программист-разработчик ПО",
+    "MI": "Ильин Матвей",
+    "MI-EMAIL": "ilin-mi@avid.ru",
+    "MI-PHONE": "31944",
+    "ASSISTANT-DEVELOPER": "Помощник программист",
+    "DV": "Викулов Денис",
+    "DV-EMAIL": "vikulov-dv@avid.ru",
+    "DV-PHONE": "31945"
+  },
+  "DEV-NEWS": {
+
+  },
+  "HINT": {
+    "DEV-NEWS": "Новости разработки",
+    "DEVELOPERS-INFO": "Информация о разработчиках",
+    "INSTRUCTION": "Инструкция по работе с ПО",
+    "TOGGLE-THEME": "Переключение темы ПО"
+  }
+}

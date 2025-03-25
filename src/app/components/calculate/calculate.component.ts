@@ -12,13 +12,15 @@ import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto
 import {MaterialProcessingDTO} from '../../shared/data/model/dto/impl/material-processing-dto';
 import {CalcService} from '../../shared/data/service/calc-service/calc.service';
 import {EventSignalService} from '../../shared/event/event-signal.service';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-calculate',
   imports: [
     AsyncPipe,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    TranslatePipe
   ],
   templateUrl: './calculate.component.html',
   styleUrl: './calculate.component.scss'

@@ -1,10 +1,14 @@
-import {Component, effect, inject} from '@angular/core';
+import {Component, effect, inject, OnInit} from '@angular/core';
 import {CalculateComponent} from '../../components/calculate/calculate.component';
 import {TableResultComponent} from '../../components/table-result/table-result.component';
 import {EventSignalService} from '../../shared/event/event-signal.service';
 import {ACalcResultDTO} from '../../shared/data/model/dto/acalc-result-dto';
 import * as XLSX from 'xlsx';
 import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto';
+import {TranslateService} from '@ngx-translate/core';
+import {COOKIE_APP, CV_APP_VERSION} from '../../shared/local-storage/local-storage-constants';
+import {LocalStorageService} from '../../shared/local-storage/local-storage.service';
+import {EventObserveService} from '../../shared/event/event-observe.service';
 
 @Component({
   selector: 'app-main',
@@ -16,18 +20,55 @@ import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto
   styleUrl: './main.component.scss',
   host: {'class': "d-flex flex-grow-1 soft-white-gray-bg"}
 })
-export class MainComponent {
+export class MainComponent implements OnInit{
   private eventSignalService = inject(EventSignalService);
+  private eventObserverService = inject(EventObserveService);
+  private localStorage = inject(LocalStorageService);
+
   resultCalc: ACalcResultDTO;
   dataForCalc: DataForCalcDTO;
 
-  constructor() {
+  userLocalStorageName: string = COOKIE_APP;
+
+  constructor(private translateService: TranslateService) {
+    this.translateService.use('ru')
+
     effect(() => {
       this.resultCalc = this.eventSignalService.resultCalcInTable()();
     });
     effect(() => {
       this.dataForCalc = this.eventSignalService.dataForCalcInTable()();
     });
+  }
+
+  ngOnInit() {
+    this._changeAppVersion();
+
+    this.initLocalStorageValues();//инициализируем значения переменных из куков
+
+  }
+
+
+  initLocalStorageValues(){
+    let userLocalStorageValuesParse = JSON.parse(this.localStorage.getLocalStorage(this.userLocalStorageName));
+    if (!userLocalStorageValuesParse) userLocalStorageValuesParse = {};
+
+    //инициализация версии приложения для отображения колокольчика уведомлений
+    const versionLocalStorage = userLocalStorageValuesParse[CV_APP_VERSION];
+    if (versionLocalStorage) {
+      this.eventObserverService.changeAppVersion(versionLocalStorage);
+    } else {
+      this.eventObserverService.changeAppVersion('v.0.0.0');
+    }
+  }
+
+
+  //подписка на версию приложения
+  _changeAppVersion() {
+    this.eventObserverService.currentAppVersion$.subscribe(currentVersion => {
+      if (currentVersion)
+        this.localStorage.addValueLocalStorage(this.userLocalStorageName, JSON.stringify({[CV_APP_VERSION]: currentVersion}));
+    })
   }
 
   exportToExcel(){
@@ -41,7 +82,7 @@ export class MainComponent {
       [this.resultCalc.nameMethod + '=', this.resultCalc.result, this.resultCalc.unitMeasurement]
     ];
 
-    // Создание рабочей книги и листа
+      // Создание рабочей книги и листа
     const worksheet = XLSX.utils.aoa_to_sheet(data);
 
     // Ширина ячеек

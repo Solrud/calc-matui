@@ -7,6 +7,11 @@ $light-font-black-color: #0c0c0c;
 $light-grey-color: #737373;
 $light-table-bg-color: #ff9494;
 
+$light-white-color: #ffffff;
+$light-black-color: #000000;
+$light-white-soft-color: #ffffff;
+$light-black-soft-color: #1f1f1f;
+
 $light-theme: (
   primary: $light-primary-color,
   secondary: $light-secondary-color,
@@ -15,6 +20,10 @@ $light-theme: (
   font-color: $light-font-black-color,
   grey-color: $light-grey-color,
   table-color: $light-table-bg-color,
+  white-to-black: $light-white-color,
+  black-to-white: $light-black-color,
+  white-to-black-soft: $light-white-soft-color,
+  black-to-white-soft: $light-black-soft-color
 );
 
 // ! Темная тема
@@ -26,6 +35,11 @@ $dark-font-white-color: #f6f6f6;
 $dark-grey-color: #b6b6b6;
 $dark-table-bg-color: #34bdb8;
 
+$dark-white-color: #ffffff;
+$dark-black-color: #000000;
+$dark-white-soft-color: #ffffff;
+$dark-black-soft-color: #1f1f1f;
+
 $dark-theme: (
   primary: $dark-primary-color,
   secondary: $dark-secondary-color,
@@ -34,6 +48,10 @@ $dark-theme: (
   font-color: $dark-font-white-color,
   grey-color: $dark-grey-color,
   table-color: $dark-table-bg-color,
+  white-to-black: $dark-black-color,
+  black-to-white: $dark-white-color,
+  white-to-black-soft: $dark-black-soft-color,
+  black-to-white-soft: $dark-white-soft-color
 );
 
 // миксин для применения темы
@@ -45,6 +63,10 @@ $dark-theme: (
   $font-color: map-get($theme, font-color);
   $grey-color: map-get($theme, grey-color);
   $table-bg-color: map-get($theme, table-color);
+  $white-to-black: map-get($theme, white-to-black);
+  $black-to-white: map-get($theme, black-to-white);
+  $white-to-black-soft: map-get($theme, white-to-black-soft);
+  $black-to-white-soft: map-get($theme, black-to-white-soft);
 
   $white-permanent-color: #f8f8f8;
   $black-permanent-color: #090909;
@@ -68,6 +90,12 @@ $dark-theme: (
   .black-permanent-bg{
     background-color: $black-permanent-color !important;
   }
+  .white-to-black-soft-bg{
+    background-color: $white-to-black-soft !important;
+  }
+  .black-to-white-soft-bg{
+    background-color: $black-to-white-soft !important;
+  }
   .table-bg{
     --bs-table-bg: $table-bg-color !important;
   }
@@ -89,6 +117,12 @@ $dark-theme: (
   .black-permanent-color{
     color: $black-permanent-color !important;
   }
+  .white-to-black-color{
+    color:  $white-to-black;
+  }
+  .black-to-white-color{
+    color: $black-to-white;
+  }
   .font-color{
     color: $font-color !important;
   }
@@ -97,14 +131,24 @@ $dark-theme: (
   }
 
 
-  // * Теги
+  // * Теги глобальные
   label{
     color: $font-color !important;
   }
 
+  .form-control{
+    background-color: $white-to-black-soft !important;
+    color: $black-to-white-soft !important;
+  }
+  .form-control[disabled]{
+    background-color: var(--disabled-form-control) !important;
+    /*color: var(--black-color) !important;*/
+  }
 
-
-
+  .form-select{
+    background-color: $white-to-black-soft !important;
+    color: $black-to-white-soft !important;
+  }
 }
 
 .light-theme{

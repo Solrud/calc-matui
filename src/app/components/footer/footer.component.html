@@ -1,7 +1,9 @@
 <span class="col-4 text-start ps-2">
-  Собственность АО "ОДК-Авиадвигатель". Все права защищены. {{date | date: 'yyyy'}}</span>
-<span class="col-4 text-center">Разработчик ОСП ТПП <i class="bi bi-telephone-inbound-fill"></i> 31948</span>
+  {{ "FOOTER.OWNERSHIP" | translate }} {{date | date: 'yyyy'}}</span>
+<span class="col-4 text-center text-decoration-underline cursor-pointer"
+      (click)="onClickOpenDevInfoDialog()"
+>{{ "FOOTER.DEVELOPED" | translate }}</span>
 <span class="col-4 text-end pe-2">
-  Расчёт съема материала с ДСЕ
+  {{ "TITLE.CALC-MAT" | translate }}
 <i class="bi bi-rocket-takeoff"></i>
 </span>

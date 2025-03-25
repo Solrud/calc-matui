@@ -1,0 +1,14 @@
+i{
+  transition: 300ms;
+  &:hover{
+    color: #c8fff7 !important;
+  }
+}
+.version{
+  font-size: 12px;
+}
+.news-attention-config {
+  position: absolute;
+  top: 5px !important;
+  right: 186px !important;
+}

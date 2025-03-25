@@ -1,4 +1,4 @@
-export enum LabelCalcInputEnum {
+  export enum LabelCalcInputEnum {
   CHOOSE_MAT_PROCESSING,
   H,
   C,

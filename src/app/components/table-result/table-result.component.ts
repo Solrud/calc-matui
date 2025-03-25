@@ -2,10 +2,13 @@ import {Component, effect, inject} from '@angular/core';
 import {EventSignalService} from '../../shared/event/event-signal.service';
 import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto';
 import {ACalcResultDTO} from '../../shared/data/model/dto/acalc-result-dto';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-table-result',
-  imports: [],
+  imports: [
+    TranslatePipe
+  ],
   templateUrl: './table-result.component.html',
   styleUrl: './table-result.component.scss'
 })

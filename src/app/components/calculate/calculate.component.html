@@ -2,7 +2,7 @@
   <div class="d-flex gap-4 pt-4">
     <div class="col-my ps-2">
       <div class="w-100">
-        <label for="removingImbalanceFrom">Выбор расчёта удаления дисбаланса</label>
+        <label for="removingImbalanceFrom">{{ "CALC.SELECT-REMOVING-IMBALANCE_FROM" | translate }}</label>
         <div class="input-group">
           <select class="form-select"
                   id="removingImbalanceFrom"
@@ -25,7 +25,7 @@
       <div class="w-100">
           <label for="materialProcessing">
             @if(selectedRemovingImbalanceFrom){
-              Выбор материала обработки
+              {{ "CALC.SELECT-MATERIAL-PROCESSING" | translate }}
             } @else {
               <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
             }
@@ -55,7 +55,7 @@
       <div class="w-100">
         <label for="widthProcessing">
           @if(selectedRemovingImbalanceFrom){
-            Ширина обработки (h) мм
+            {{ "CALC.WIDTH-PROCESSING-(H)-MM" | translate }}
           } @else {
             <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
           }</label>
@@ -79,7 +79,7 @@
       <div class="w-100">
         <label for="depthIncision">
           @if(selectedRemovingImbalanceFrom){
-            Глубина врезания (c) мм
+            {{ "CALC.DEPTH-INCISION-(C)-MM" | translate }}
           }
           @else {
             <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
@@ -108,7 +108,7 @@
       <div class="w-100">
         <label for="massRemovable">
           @if(selectedRemovingImbalanceFrom){
-            Удаляемая масса (m) грамм
+            {{ "CALC.MASS-REMOVABLE-(M)-GRAM" | translate }}
           } @else {
             <ng-container *ngTemplateOutlet="selectRemovingFrom"></ng-container>
           }
@@ -135,7 +135,7 @@
                 [disabled]="fgCalc.invalid"
                 (click)="onClickCalc()"
         >
-          <i class="bi bi-calculator-fill"></i> Произвести расчет
+          <i class="bi bi-calculator-fill"></i> {{ "BUTTON.CALCULATE-RESULT" | translate }}
         </button>
       </div>
     </div>
@@ -144,5 +144,5 @@
 
 
 <ng-template #selectRemovingFrom>
-  <span class="grey-color">**Сначала выберите метод обработки**</span>
+  <span class="grey-color">{{ "CALC.FIRST-SELECT-METHOD-PROCESSING" | translate }}</span>
 </ng-template>

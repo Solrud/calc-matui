@@ -6,17 +6,17 @@
       <div class="col-4 text-center">
         <span class="fs-4 third-color">Результат:
           <span class="fw-bold">
-            {{resultCalc?.result}} {{resultCalc?.unitMeasurement}}
+            {{resultCalc.nameMethod}} = {{resultCalc?.result}} {{resultCalc?.unitMeasurement}}
           </span>
         </span>
       </div>
-      <div class="col-4 text-center">
+      <div class="col-4 text-center d-flex align-items-end">
         @if (dataForCalc){
           <button class="btn btn-success border-0 me-5"
                   (click)="exportToExcel()"
           >
             <i class="bi bi-download"></i>
-            Экспорт в Excel файл
+            Сохранить результат в Excel
           </button>
         }
       </div>
