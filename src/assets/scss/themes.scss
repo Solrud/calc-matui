@@ -5,7 +5,9 @@ $light-third-color: #145a70;
 $light-main-bg-color: #ececec;
 $light-font-black-color: #0c0c0c;
 $light-grey-color: #737373;
-$light-table-bg-color: #ff9494;
+
+$light-thead-bg-color: #7099ff;
+$light-tbody-bg-color: #ffffff;
 
 $light-white-color: #ffffff;
 $light-black-color: #000000;
@@ -19,7 +21,8 @@ $light-theme: (
   main-bg-color: $light-main-bg-color,
   font-color: $light-font-black-color,
   grey-color: $light-grey-color,
-  table-color: $light-table-bg-color,
+  thead-bg-color: $light-thead-bg-color,
+  tbody-bg-color: $light-tbody-bg-color,
   white-to-black: $light-white-color,
   black-to-white: $light-black-color,
   white-to-black-soft: $light-white-soft-color,
@@ -29,11 +32,13 @@ $light-theme: (
 // ! Темная тема
 $dark-primary-color: #14317e;
 $dark-secondary-color: #3058c2;
-$dark-third-color: #41e0d6;
+$dark-third-color: #60ccf3;
 $dark-main-bg-color: #2f2f2f;
 $dark-font-white-color: #f6f6f6;
 $dark-grey-color: #b6b6b6;
-$dark-table-bg-color: #34bdb8;
+
+$dark-thead-bg-color: #14317e;
+$dark-tbody-bg-color: #1e1e1e;
 
 $dark-white-color: #ffffff;
 $dark-black-color: #000000;
@@ -47,7 +52,8 @@ $dark-theme: (
   main-bg-color: $dark-main-bg-color,
   font-color: $dark-font-white-color,
   grey-color: $dark-grey-color,
-  table-color: $dark-table-bg-color,
+  thead-bg-color: $dark-thead-bg-color,
+  tbody-bg-color: $dark-tbody-bg-color,
   white-to-black: $dark-black-color,
   black-to-white: $dark-white-color,
   white-to-black-soft: $dark-black-soft-color,
@@ -62,7 +68,8 @@ $dark-theme: (
   $main-bg-color: map-get($theme, main-bg-color);
   $font-color: map-get($theme, font-color);
   $grey-color: map-get($theme, grey-color);
-  $table-bg-color: map-get($theme, table-color);
+  $thead-bg-color: map-get($theme, thead-bg-color);
+  $tbody-bg-color: map-get($theme, tbody-bg-color);
   $white-to-black: map-get($theme, white-to-black);
   $black-to-white: map-get($theme, black-to-white);
   $white-to-black-soft: map-get($theme, white-to-black-soft);
@@ -95,9 +102,6 @@ $dark-theme: (
   }
   .black-to-white-soft-bg{
     background-color: $black-to-white-soft !important;
-  }
-  .table-bg{
-    --bs-table-bg: $table-bg-color !important;
   }
 
 
@@ -135,7 +139,7 @@ $dark-theme: (
   label{
     color: $font-color !important;
   }
-
+  // * Изменение form-control инпутов, селектов
   .form-control{
     background-color: $white-to-black-soft !important;
     color: $black-to-white-soft !important;
@@ -144,11 +148,32 @@ $dark-theme: (
     background-color: var(--disabled-form-control) !important;
     /*color: var(--black-color) !important;*/
   }
-
   .form-select{
     background-color: $white-to-black-soft !important;
     color: $black-to-white-soft !important;
   }
+  // * Таблица результатов
+
+  .thead-table {
+    --bs-table-bg: #{$thead-bg-color} !important;
+    tr{
+      th{
+        color: #{$black-to-white} !important;
+      }
+    }
+  }
+  tbody{
+    --bs-table-bg: #{$tbody-bg-color} !important;
+    tr{
+      td{
+        color: #{$black-to-white} !important;
+      }
+      th{
+        color: #{$black-to-white} !important;
+      }
+    }
+  }
+
 }
 
 .light-theme{

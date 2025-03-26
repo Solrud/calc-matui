@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class LocalStorageService {
   setLocalStorage(name: string, value: string, days: number = 7): void {
     const valueToSave = JSON.stringify({ value, expires: new Date().getTime() + (days * 24 * 60 * 60 * 1000) });
-    localStorage.setItem(name, valueToSave);
+    localStorage.setItem(name, value);
   }
 
   addValueLocalStorage(name: string, jsonValue: string, days: number = 365): void {
@@ -22,12 +22,7 @@ export class LocalStorageService {
   getLocalStorage(name: string): string {
     const value = localStorage.getItem(name);
     if (value) {
-      const parsedValue = JSON.parse(value);
-      if (parsedValue.expires && parsedValue.expires < new Date().getTime()) {
-        this.deleteLocalStorage(name);
-        return null;
-      }
-      return parsedValue.value;
+      return value;
     } else {
       return null;
     }

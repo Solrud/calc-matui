@@ -3,7 +3,7 @@ import {environment} from '../../../../environments/environment';
 
 export const AUTH_URL_TOKEN = new InjectionToken('url auth', {
   providedIn: 'root',
-  factory: () => environment.backendURL + '/ auth',
+  factory: () => environment.backendURL + '/auth',
 })
 export const MATERIAL_PROCESSING_TOKEN = new InjectionToken('Materials url', {
   providedIn: 'root',

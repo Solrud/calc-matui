@@ -7,24 +7,13 @@ import {Theme} from './theme.enum';
 export class ThemeService{
   private currentTheme: Theme | null = null;
 
-  constructor() {
-    if (!this.currentTheme) {
-      this.currentTheme = Theme.LIGHT;
-      document.body.classList.add(this.currentTheme + '-theme');
-    }
-  }
 
-  get getTheme(): Theme{
-    return this.currentTheme;
-  }
-
-  toggleTheme(): void{
+  changeTheme(theme: Theme){
     if (this.currentTheme){
       document.body.classList.remove(this.currentTheme + '-theme');
     }
-    const newTheme = this.currentTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
-    this.currentTheme = newTheme;
 
+    this.currentTheme = theme;
     document.body.classList.add(this.currentTheme + '-theme');
   }
 }

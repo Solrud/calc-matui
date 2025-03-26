@@ -6,9 +6,11 @@ import {ACalcResultDTO} from '../../shared/data/model/dto/acalc-result-dto';
 import * as XLSX from 'xlsx';
 import {DataForCalcDTO} from '../../shared/data/model/dto/impl/data-for-calc-dto';
 import {TranslateService} from '@ngx-translate/core';
-import {COOKIE_APP, CV_APP_VERSION} from '../../shared/local-storage/local-storage-constants';
+import {LS_APP, LS_APP_THEME, LS_APP_VERSION} from '../../shared/local-storage/local-storage-constants';
 import {LocalStorageService} from '../../shared/local-storage/local-storage.service';
 import {EventObserveService} from '../../shared/event/event-observe.service';
+import {ThemeService} from '../../shared/theme/theme.service';
+import {Theme} from '../../shared/theme/theme.enum';
 
 @Component({
   selector: 'app-main',
@@ -24,14 +26,15 @@ export class MainComponent implements OnInit{
   private eventSignalService = inject(EventSignalService);
   private eventObserverService = inject(EventObserveService);
   private localStorage = inject(LocalStorageService);
+  private themeService = inject(ThemeService);
 
   resultCalc: ACalcResultDTO;
   dataForCalc: DataForCalcDTO;
 
-  userLocalStorageName: string = COOKIE_APP;
+  userLocalStorageName: string = LS_APP;
 
   constructor(private translateService: TranslateService) {
-    this.translateService.use('ru')
+    this.translateService.setDefaultLang('ru')
 
     effect(() => {
       this.resultCalc = this.eventSignalService.resultCalcInTable()();
@@ -43,31 +46,45 @@ export class MainComponent implements OnInit{
 
   ngOnInit() {
     this._changeAppVersion();
+    this._changeAppTheme();
 
     this.initLocalStorageValues();//инициализируем значения переменных из куков
-
   }
-
 
   initLocalStorageValues(){
     let userLocalStorageValuesParse = JSON.parse(this.localStorage.getLocalStorage(this.userLocalStorageName));
     if (!userLocalStorageValuesParse) userLocalStorageValuesParse = {};
 
     //инициализация версии приложения для отображения колокольчика уведомлений
-    const versionLocalStorage = userLocalStorageValuesParse[CV_APP_VERSION];
+    const versionLocalStorage = userLocalStorageValuesParse[LS_APP_VERSION];
     if (versionLocalStorage) {
       this.eventObserverService.changeAppVersion(versionLocalStorage);
     } else {
       this.eventObserverService.changeAppVersion('v.0.0.0');
     }
+
+    const themeLocalStorage = userLocalStorageValuesParse[LS_APP_THEME];
+    if (themeLocalStorage) {
+      this.eventObserverService.changeAppTheme(themeLocalStorage);
+    } else {
+      this.eventObserverService.changeAppTheme(Theme.LIGHT);
+    }
   }
 
+  _changeAppTheme(){
+    this.eventObserverService.currentAppTheme$.subscribe( currentTheme => {
+      if (currentTheme){
+        this.localStorage.addValueLocalStorage(this.userLocalStorageName, JSON.stringify({[LS_APP_THEME]: currentTheme}));
+        this.themeService.changeTheme(currentTheme);
+      }
+    })
+  }
 
-  //подписка на версию приложения
+  //подписка на тему приложения
   _changeAppVersion() {
     this.eventObserverService.currentAppVersion$.subscribe(currentVersion => {
       if (currentVersion)
-        this.localStorage.addValueLocalStorage(this.userLocalStorageName, JSON.stringify({[CV_APP_VERSION]: currentVersion}));
+        this.localStorage.addValueLocalStorage(this.userLocalStorageName, JSON.stringify({[LS_APP_VERSION]: currentVersion}));
     })
   }
 

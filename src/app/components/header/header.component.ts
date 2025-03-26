@@ -18,7 +18,6 @@ import {DEFAULT_APP_VERSION} from '../../dialogs/news/news';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit{
-  private themeService = inject(ThemeService);
   private fileService = inject(FileService);
   private openDialogService = inject(OpenDialogService);
   private eventObserveService = inject(EventObserveService);
@@ -26,18 +25,24 @@ export class HeaderComponent implements OnInit{
   readonly defaultAppVersion = DEFAULT_APP_VERSION;
 
   protected readonly Theme = Theme;
-  currentTheme: Theme;
+  currentTheme: Theme = null;
 
   showNewsAttention: boolean;
 
   ngOnInit() {
-    this.currentTheme = this.themeService.getTheme;
+    this._changeAppTheme();
 
     this._changeAppVersion();
   }
 
   public get DEFAULT_APP_VERSION(){
     return DEFAULT_APP_VERSION;
+  }
+
+  _changeAppTheme(){
+    this.eventObserveService.currentAppTheme$.subscribe( currentTheme => {
+      if (currentTheme) this.currentTheme = currentTheme;
+    })
   }
 
   _changeAppVersion(){
@@ -61,7 +66,7 @@ export class HeaderComponent implements OnInit{
   }
 
   onClickToggleTheme(): void {
-    this.themeService.toggleTheme();
-    this.currentTheme = this.themeService.getTheme;
+    const newTheme = this.currentTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
+    this.eventObserveService.changeAppTheme(newTheme);
   }
 }
