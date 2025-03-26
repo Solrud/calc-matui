@@ -35,7 +35,7 @@ export class NewsComponent implements OnInit{
     this.eventService.currentAppVersion$.subscribe( version => {
       if(version){
         this.oldAppVersion = version;
-        if (this.oldAppVersion === 'v.0.0.0')
+        if (this.oldAppVersion !== this.currentAppVersion)
           this.isFirstTimeOpened = true;
       }
     })

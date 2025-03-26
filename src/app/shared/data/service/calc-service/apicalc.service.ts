@@ -33,7 +33,7 @@ export class APICalcService extends ABase {
       const arcLength = new ArcLengthLDTO();
       arcLength.result = Number(l.toFixed(1));
       arcLength.unitMeasurement = 'мм';
-      arcLength.nameMethod = 'длины дуги (L)'
+      arcLength.nameMethod = 'длина дуги (L)'
 
       return of(arcLength);
     }
