@@ -45,7 +45,7 @@ export class NewsComponent implements OnInit{
     this.allNews = [
       // new News('v.0.1.0', this.makeDate(1,6, 2025),
       //   []),
-      new News('v.1.0.0', this.makeDate(26, 3, 2025),
+      new News('v.1.0.1', this.makeDate(26, 3, 2025),
         ['Исправлены недочеты', 'Обработка исключения при невозможности вычисления результата']),
       new News('v.1.0.0', this.makeDate(26, 3, 2025),
         ['Релиз приложения']),

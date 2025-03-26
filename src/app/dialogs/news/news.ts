@@ -11,4 +11,4 @@ export class News {
 }
 
 
-export const DEFAULT_APP_VERSION = 'v.1.0.0';
+export const DEFAULT_APP_VERSION = 'v.1.0.1';

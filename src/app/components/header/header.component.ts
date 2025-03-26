@@ -7,6 +7,7 @@ import {NgbTooltipModule} from '@ng-bootstrap/ng-bootstrap';
 import {OpenDialogService} from '../../shared/open-dialog/open-dialog.service';
 import {EventObserveService} from '../../shared/event/event-observe.service';
 import {DEFAULT_APP_VERSION} from '../../dialogs/news/news';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -62,7 +63,7 @@ export class HeaderComponent implements OnInit{
   }
 
   onClickOpenInstructionInNewTab(): void{
-    this.fileService.openFileInNewTab('/assets/files/TZ-0067-2025-CALC-MAT.pdf', 'tz-test')
+    this.fileService.openFileInNewTab(environment.frontendURL + '/assets/files/TZ-0067-2025-CALC-MAT.pdf', 'tz-test')
   }
 
   onClickToggleTheme(): void {
