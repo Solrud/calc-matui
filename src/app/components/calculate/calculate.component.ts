@@ -41,6 +41,7 @@ export class CalculateComponent implements OnInit{
   newDataForCalc: DataForCalcDTO;
 
   calcResult: number;
+  calcErrorMessage: string;
 
   ngOnInit() {
     this._loadData();
@@ -78,10 +79,14 @@ export class CalculateComponent implements OnInit{
   _subscribeValidFgCalc(): void{
     this.fgCalc.statusChanges.subscribe((status) => {
       if (status === 'INVALID'){
-        this.eventSignalService.updateResultCalcInTable(null);
-        this.eventSignalService.updateDataForCalcInTable(null);
+        this.toSignalForNullCalcResult();
       }
     })
+  }
+
+  toSignalForNullCalcResult(){
+    this.eventSignalService.updateResultCalcInTable(null);
+    this.eventSignalService.updateDataForCalcInTable(null);
   }
 
   _subscribeFcRemovingImbalanceFrom(): void{
@@ -134,12 +139,27 @@ export class CalculateComponent implements OnInit{
   onClickCalc(){
     this.createNewDataForCalc();
 
-    this.calcService.calc(this.newDataForCalc)
-      .subscribe( result => {
+    this.calcService.calc(this.newDataForCalc).subscribe({
+      next: result => {
+        this.calcErrorMessage = null;
+
         this.calcResult = result.result;
 
         this.eventSignalService.updateDataForCalcInTable(this.newDataForCalc);
         this.eventSignalService.updateResultCalcInTable(result)
+      },
+      error: error => {
+        this.calcErrorMessage = error.message;
+        this.toSignalForNullCalcResult();
+      }
     })
+
+    // this.calcService.calc(this.newDataForCalc)
+    //   .subscribe( result => {
+    //     this.calcResult = result.result;
+    //
+    //     this.eventSignalService.updateDataForCalcInTable(this.newDataForCalc);
+    //     this.eventSignalService.updateResultCalcInTable(result)
+    // })
   }
 }

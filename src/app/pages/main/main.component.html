@@ -2,17 +2,16 @@
   <app-calculate></app-calculate>
   @if(resultCalc){
     <div class="mt-5 d-flex justify-content-between">
-      <div class="col-4"></div>
-      <div class="col-4 text-center">
+      <div class="col-8">
         <span class="fs-4 third-color">Результат:
-          <span class="fw-bold">
-            {{resultCalc.nameMethod}} = {{resultCalc?.result}} {{resultCalc?.unitMeasurement}}
+          <span>
+            {{resultCalc.nameMethod}} = <span class="fw-bold">{{resultCalc?.result}} {{resultCalc?.unitMeasurement}}</span>
           </span>
         </span>
       </div>
-      <div class="col-4 text-center d-flex align-items-end">
+      <div class="col-4 d-flex align-items-end justify-content-end">
         @if (dataForCalc){
-          <button class="btn btn-success border-0 me-5"
+          <button class="btn btn-success border-0"
                   (click)="exportToExcel()"
           >
             <i class="bi bi-download"></i>

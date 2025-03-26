@@ -2,7 +2,7 @@ import {inject, Inject, Injectable, InjectionToken} from '@angular/core';
 import {ABase} from '../abase';
 import {DATA_FOR_CALC_TOKEN} from '../../url/baseUrl.token';
 import {DataForCalcDTO} from '../../model/dto/impl/data-for-calc-dto';
-import {Observable, of} from 'rxjs';
+import {Observable, of, throwError} from 'rxjs';
 import {ArcLengthLDTO} from '../../model/dto/impl/arc-length-l-dto';
 import {ProtrusionCountNDTO} from '../../model/dto/impl/protrusion-count-n-dto';
 import {HttpClient} from '@angular/common/http';
@@ -26,8 +26,11 @@ export class APICalcService extends ABase {
       const h = data.widthProcessing;
       const c = data.depthIncision;
       const p = data.materialProcessing.hardness;
-      const arcLength = new ArcLengthLDTO();
       const l = m / (p * h * c);
+
+      if (!l) return throwError(() => new Error('Невозможно вычислить с такими данными'));
+
+      const arcLength = new ArcLengthLDTO();
       arcLength.result = Number(l.toFixed(1));
       arcLength.unitMeasurement = 'мм';
       arcLength.nameMethod = 'длины дуги (L)'
@@ -49,9 +52,11 @@ export class APICalcService extends ABase {
       const m1 = S * h * p;
       const N = Math.round(m / m1);
 
+      if (!N) return throwError(() => new Error('Невозможно вычислить с такими данными'));
+
       const protrusionCount = new ProtrusionCountNDTO();
       protrusionCount.result = N;
-      protrusionCount.unitMeasurement = null;
+      protrusionCount.unitMeasurement = 'шт.';
       protrusionCount.nameMethod = 'количество выступов (N)'
 
       return of(protrusionCount);

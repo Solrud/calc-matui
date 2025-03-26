@@ -62,7 +62,7 @@ export class HeaderComponent implements OnInit{
   }
 
   onClickOpenInstructionInNewTab(): void{
-    this.fileService.openFileInNewTab('/assets/files/ТЗ № ТЗ-0067-2025 Разработка ПО для расчета съема материала с ДСЕ (19787472 v4).pdf', 'tz-test')
+    this.fileService.openFileInNewTab('/assets/files/TZ-0067-2025-CALC-MAT.pdf', 'tz-test')
   }
 
   onClickToggleTheme(): void {

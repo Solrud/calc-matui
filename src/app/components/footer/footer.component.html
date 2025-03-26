@@ -1,8 +1,8 @@
 <span class="col-4 text-start ps-2">
   {{ "FOOTER.OWNERSHIP" | translate }} {{date | date: 'yyyy'}}</span>
-<span class="col-4 text-center text-decoration-underline cursor-pointer"
-      (click)="onClickOpenDevInfoDialog()"
->{{ "FOOTER.DEVELOPED" | translate }}</span>
+<div class="col-4 text-center"
+><span class="text-decoration-underline cursor-pointer"
+       (click)="onClickOpenDevInfoDialog()">{{ "FOOTER.DEVELOPED" | translate }}&nbsp;<i class="bi bi-box-arrow-up-left"></i></span></div>
 <span class="col-4 text-end pe-2">
   {{ "TITLE.CALC-MAT" | translate }}
 <i class="bi bi-rocket-takeoff"></i>

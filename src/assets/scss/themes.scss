@@ -78,6 +78,8 @@ $dark-theme: (
   $white-permanent-color: #f8f8f8;
   $black-permanent-color: #090909;
 
+  $disabled-input-bg: rgba(255, 255, 255, 0);
+
   // * Background
   .primary-bg{
     background-color: $primary-color !important;
@@ -145,12 +147,15 @@ $dark-theme: (
     color: $black-to-white-soft !important;
   }
   .form-control[disabled]{
-    background-color: var(--disabled-form-control) !important;
+    background-color: $disabled-input-bg !important;
     /*color: var(--black-color) !important;*/
   }
   .form-select{
     background-color: $white-to-black-soft !important;
     color: $black-to-white-soft !important;
+  }
+  .form-select[disabled]{
+    background-color: $disabled-input-bg !important;
   }
   // * Таблица результатов
 
