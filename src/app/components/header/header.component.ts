@@ -63,7 +63,7 @@ export class HeaderComponent implements OnInit{
   }
 
   onClickOpenInstructionInNewTab(): void{
-    this.fileService.openFileInNewTab(environment.frontendURL + '/assets/files/TZ-0067-2025-CALC-MAT.pdf', 'tz-test')
+    this.fileService.openFileInNewTab(environment.frontendURL + '/assets/files/instructionCalcMat.pdf', 'instructionCalcMat')
   }
 
   onClickToggleTheme(): void {

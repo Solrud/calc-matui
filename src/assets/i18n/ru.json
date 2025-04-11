@@ -7,7 +7,7 @@
     "CLOSE": "Закрыть"
   },
   "CALC": {
-    "SELECT-REMOVING-IMBALANCE_FROM": "Выбор расчёта удаления дисбаланса",
+    "SELECT-REMOVING-IMBALANCE_FROM": "Выбор метода расчёта удаления дисбаланса",
     "SELECT-MATERIAL-PROCESSING": "Выбор материала обработки",
     "WIDTH-PROCESSING-(H)-MM": "Ширина обработки (h) мм",
     "DEPTH-INCISION-(C)-MM": "Глубина врезания (c) мм",
@@ -32,7 +32,7 @@
   },
   "DEV-INFO": {
     "INFO-ABOUT-PROGRAM": "Разработчики ПО \"Расчёт съема материала с ДСЕ\"",
-    "BUREAU-DEV-OSP-TPP": "Бюро разработки ОСП ТПП",
+    "BUREAU-DEV-OSP-TPP": "Бюро СПО ОСП ТПП",
     "HEAD-OF-OSP-TPP-DEPARTMENT": "Начальник отдела ОСП ТПП",
     "ER": "Ариткулов Эдуард Раисович",
     "ER-EMAIL": "aritkulov@avid.ru",
